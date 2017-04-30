@@ -6,9 +6,11 @@ DerivedData/
 *.pbxuser
 *.mode1v3
 
-*.xcodeproj/xcuserdata
+*/xcuserdata
+*.xcuserstate
 !*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
+
+*.swp
 
 Podfile.lock
 Pods
