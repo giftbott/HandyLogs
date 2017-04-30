@@ -7,23 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5257FBC21EB602BC009856AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBC11EB602BC009856AA /* AppDelegate.swift */; };
-		5257FBC41EB602BC009856AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBC31EB602BC009856AA /* ViewController.swift */; };
-		5257FBC71EB602BC009856AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBC51EB602BC009856AA /* Main.storyboard */; };
-		5257FBC91EB602BC009856AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBC81EB602BC009856AA /* Assets.xcassets */; };
-		5257FBCC1EB602BC009856AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBCA1EB602BC009856AA /* LaunchScreen.storyboard */; };
 		5257FBD51EB60380009856AA /* HandyLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBD41EB60380009856AA /* HandyLogs.swift */; };
+		5257FBE31EB6135F009856AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBDB1EB6135F009856AA /* AppDelegate.swift */; };
+		5257FBE51EB6135F009856AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */; };
+		5257FBE81EB6135F009856AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBE21EB6135F009856AA /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5257FBBE1EB602BC009856AA /* HandyLogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyLogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5257FBC11EB602BC009856AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5257FBC31EB602BC009856AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5257FBC61EB602BC009856AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5257FBC81EB602BC009856AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5257FBCB1EB602BC009856AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5257FBCD1EB602BC009856AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257FBD41EB60380009856AA /* HandyLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandyLogs.swift; path = Sources/HandyLogs.swift; sourceTree = "<group>"; };
+		5257FBDB1EB6135F009856AA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5257FBDE1EB6135F009856AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5257FBE11EB6135F009856AA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5257FBE21EB6135F009856AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,8 +36,8 @@
 		5257FBB51EB602BC009856AA = {
 			isa = PBXGroup;
 			children = (
+				5257FBDA1EB6135F009856AA /* Demo */,
 				5257FBD31EB6036F009856AA /* Sources */,
-				5257FBC01EB602BC009856AA /* HandyLogs */,
 				5257FBBF1EB602BC009856AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,25 +50,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5257FBC01EB602BC009856AA /* HandyLogs */ = {
-			isa = PBXGroup;
-			children = (
-				5257FBC11EB602BC009856AA /* AppDelegate.swift */,
-				5257FBC31EB602BC009856AA /* ViewController.swift */,
-				5257FBC51EB602BC009856AA /* Main.storyboard */,
-				5257FBC81EB602BC009856AA /* Assets.xcassets */,
-				5257FBCA1EB602BC009856AA /* LaunchScreen.storyboard */,
-				5257FBCD1EB602BC009856AA /* Info.plist */,
-			);
-			path = HandyLogs;
-			sourceTree = "<group>";
-		};
 		5257FBD31EB6036F009856AA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				5257FBD41EB60380009856AA /* HandyLogs.swift */,
 			);
 			name = Sources;
+			sourceTree = "<group>";
+		};
+		5257FBDA1EB6135F009856AA /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				5257FBDB1EB6135F009856AA /* AppDelegate.swift */,
+				5257FBE21EB6135F009856AA /* ViewController.swift */,
+				5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */,
+				5257FBE11EB6135F009856AA /* Info.plist */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5257FBCC1EB602BC009856AA /* LaunchScreen.storyboard in Resources */,
-				5257FBC91EB602BC009856AA /* Assets.xcassets in Resources */,
-				5257FBC71EB602BC009856AA /* Main.storyboard in Resources */,
+				5257FBE51EB6135F009856AA /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,8 +139,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5257FBC41EB602BC009856AA /* ViewController.swift in Sources */,
-				5257FBC21EB602BC009856AA /* AppDelegate.swift in Sources */,
+				5257FBE81EB6135F009856AA /* ViewController.swift in Sources */,
+				5257FBE31EB6135F009856AA /* AppDelegate.swift in Sources */,
 				5257FBD51EB60380009856AA /* HandyLogs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,18 +148,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5257FBC51EB602BC009856AA /* Main.storyboard */ = {
+		5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5257FBC61EB602BC009856AA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5257FBCA1EB602BC009856AA /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5257FBCB1EB602BC009856AA /* Base */,
+				5257FBDE1EB6135F009856AA /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -216,7 +200,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -260,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -272,10 +256,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = HandyLogs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.HandyLogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG SUBDIVIDE";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -284,7 +270,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = HandyLogs/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.HandyLogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
