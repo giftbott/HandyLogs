@@ -10,7 +10,6 @@ DerivedData/
 *.xcodeproj/xcuserdata
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
-*.xcworkspace/contents.xcworkspacedata
 
 Podfile.lock
 Pods
