@@ -12,6 +12,7 @@
 		5257FBC71EB602BC009856AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBC51EB602BC009856AA /* Main.storyboard */; };
 		5257FBC91EB602BC009856AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBC81EB602BC009856AA /* Assets.xcassets */; };
 		5257FBCC1EB602BC009856AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBCA1EB602BC009856AA /* LaunchScreen.storyboard */; };
+		5257FBD51EB60380009856AA /* HandyLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBD41EB60380009856AA /* HandyLogs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		5257FBC81EB602BC009856AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5257FBCB1EB602BC009856AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5257FBCD1EB602BC009856AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5257FBD41EB60380009856AA /* HandyLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandyLogs.swift; path = Sources/HandyLogs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		5257FBB51EB602BC009856AA = {
 			isa = PBXGroup;
 			children = (
+				5257FBD31EB6036F009856AA /* Sources */,
 				5257FBC01EB602BC009856AA /* HandyLogs */,
 				5257FBBF1EB602BC009856AA /* Products */,
 			);
@@ -62,6 +65,14 @@
 				5257FBCD1EB602BC009856AA /* Info.plist */,
 			);
 			path = HandyLogs;
+			sourceTree = "<group>";
+		};
+		5257FBD31EB6036F009856AA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5257FBD41EB60380009856AA /* HandyLogs.swift */,
+			);
+			name = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +149,7 @@
 			files = (
 				5257FBC41EB602BC009856AA /* ViewController.swift in Sources */,
 				5257FBC21EB602BC009856AA /* AppDelegate.swift in Sources */,
+				5257FBD51EB60380009856AA /* HandyLogs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +311,7 @@
 				5257FBD21EB602BC009856AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
