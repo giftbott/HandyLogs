@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5257FBBD1EB602BC009856AA"
-               BuildableName = "HandyLogs.app"
+               BlueprintIdentifier = "5257FC231EB63481009856AA"
+               BuildableName = "HandyLogs.framework"
                BlueprintName = "HandyLogs"
                ReferencedContainer = "container:HandyLogs.xcodeproj">
             </BuildableReference>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5257FBBD1EB602BC009856AA"
-            BuildableName = "HandyLogs.app"
-            BlueprintName = "HandyLogs"
-            ReferencedContainer = "container:HandyLogs.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5257FBBD1EB602BC009856AA"
-            BuildableName = "HandyLogs.app"
+            BlueprintIdentifier = "5257FC231EB63481009856AA"
+            BuildableName = "HandyLogs.framework"
             BlueprintName = "HandyLogs"
             ReferencedContainer = "container:HandyLogs.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5257FBBD1EB602BC009856AA"
-            BuildableName = "HandyLogs.app"
+            BlueprintIdentifier = "5257FC231EB63481009856AA"
+            BuildableName = "HandyLogs.framework"
             BlueprintName = "HandyLogs"
             ReferencedContainer = "container:HandyLogs.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

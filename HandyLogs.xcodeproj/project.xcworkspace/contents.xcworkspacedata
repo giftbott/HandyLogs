@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HandyLogs.xcodeproj">
+      location = "self:/Users/giftbot/Desktop/github/HandyLogs/HandyLogs.xcodeproj">
    </FileRef>
 </Workspace>

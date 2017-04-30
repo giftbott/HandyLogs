@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HandyLogs
 
 class ViewController: UIViewController {
 
@@ -32,6 +33,5 @@ class ViewController: UIViewController {
             Handy.eLog()
             Handy.fLog()
         #endif
-        
     }
 }

@@ -7,23 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5257FBD51EB60380009856AA /* HandyLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBD41EB60380009856AA /* HandyLogs.swift */; };
 		5257FBE31EB6135F009856AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBDB1EB6135F009856AA /* AppDelegate.swift */; };
-		5257FBE51EB6135F009856AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */; };
 		5257FBE81EB6135F009856AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBE21EB6135F009856AA /* ViewController.swift */; };
+		5257FC331EB6357C009856AA /* HandyLogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 5257FC321EB6357C009856AA /* HandyLogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5257FC361EB63618009856AA /* HandyLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBD41EB60380009856AA /* HandyLogs.swift */; };
+		5257FC371EB6368C009856AA /* HandyLogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5257FC241EB63481009856AA /* HandyLogs.framework */; };
+		5257FC381EB63930009856AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5257FC391EB6394B009856AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5257FBB61EB602BC009856AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5257FC231EB63481009856AA;
+			remoteInfo = HandyLogs;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		5257FBBE1EB602BC009856AA /* HandyLogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyLogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5257FBBE1EB602BC009856AA /* HandyLogsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyLogsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257FBD41EB60380009856AA /* HandyLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandyLogs.swift; path = Sources/HandyLogs.swift; sourceTree = "<group>"; };
 		5257FBDB1EB6135F009856AA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5257FBDE1EB6135F009856AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5257FBE11EB6135F009856AA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257FBE21EB6135F009856AA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5257FC1D1EB63275009856AA /* Info-Demo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Demo.plist"; sourceTree = "<group>"; };
+		5257FC241EB63481009856AA /* HandyLogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HandyLogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5257FC321EB6357C009856AA /* HandyLogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HandyLogs.h; path = Sources/HandyLogs.h; sourceTree = "<group>"; };
+		5257FC341EB63593009856AA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Support/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5257FBBB1EB602BC009856AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5257FC371EB6368C009856AA /* HandyLogs.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5257FC201EB63481009856AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,8 +59,8 @@
 		5257FBB51EB602BC009856AA = {
 			isa = PBXGroup;
 			children = (
+				5257FBE91EB626E4009856AA /* HandyLogs */,
 				5257FBDA1EB6135F009856AA /* Demo */,
-				5257FBD31EB6036F009856AA /* Sources */,
 				5257FBBF1EB602BC009856AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,17 +68,10 @@
 		5257FBBF1EB602BC009856AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5257FBBE1EB602BC009856AA /* HandyLogs.app */,
+				5257FBBE1EB602BC009856AA /* HandyLogsDemo.app */,
+				5257FC241EB63481009856AA /* HandyLogs.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5257FBD31EB6036F009856AA /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				5257FBD41EB60380009856AA /* HandyLogs.swift */,
-			);
-			name = Sources;
 			sourceTree = "<group>";
 		};
 		5257FBDA1EB6135F009856AA /* Demo */ = {
@@ -64,17 +80,46 @@
 				5257FBDB1EB6135F009856AA /* AppDelegate.swift */,
 				5257FBE21EB6135F009856AA /* ViewController.swift */,
 				5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */,
-				5257FBE11EB6135F009856AA /* Info.plist */,
+				5257FC1D1EB63275009856AA /* Info-Demo.plist */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
 		};
+		5257FBE91EB626E4009856AA /* HandyLogs */ = {
+			isa = PBXGroup;
+			children = (
+				5257FC321EB6357C009856AA /* HandyLogs.h */,
+				5257FBD41EB60380009856AA /* HandyLogs.swift */,
+				5257FBEA1EB626F5009856AA /* Supporting Files */,
+			);
+			name = HandyLogs;
+			sourceTree = "<group>";
+		};
+		5257FBEA1EB626F5009856AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5257FC341EB63593009856AA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		5257FC211EB63481009856AA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5257FC331EB6357C009856AA /* HandyLogs.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		5257FBBD1EB602BC009856AA /* HandyLogs */ = {
+		5257FBBD1EB602BC009856AA /* HandyLogsDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5257FBD01EB602BC009856AA /* Build configuration list for PBXNativeTarget "HandyLogs" */;
+			buildConfigurationList = 5257FBD01EB602BC009856AA /* Build configuration list for PBXNativeTarget "HandyLogsDemo" */;
 			buildPhases = (
 				5257FBBA1EB602BC009856AA /* Sources */,
 				5257FBBB1EB602BC009856AA /* Frameworks */,
@@ -83,11 +128,30 @@
 			buildRules = (
 			);
 			dependencies = (
+				5257FC3A1EB6394B009856AA /* PBXTargetDependency */,
+			);
+			name = HandyLogsDemo;
+			productName = HandyLogs;
+			productReference = 5257FBBE1EB602BC009856AA /* HandyLogsDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5257FC231EB63481009856AA /* HandyLogs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5257FC2D1EB63481009856AA /* Build configuration list for PBXNativeTarget "HandyLogs" */;
+			buildPhases = (
+				5257FC1F1EB63481009856AA /* Sources */,
+				5257FC201EB63481009856AA /* Frameworks */,
+				5257FC211EB63481009856AA /* Headers */,
+				5257FC221EB63481009856AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
 			);
 			name = HandyLogs;
 			productName = HandyLogs;
-			productReference = 5257FBBE1EB602BC009856AA /* HandyLogs.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 5257FC241EB63481009856AA /* HandyLogs.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,6 +164,10 @@
 				ORGANIZATIONNAME = giftbot;
 				TargetAttributes = {
 					5257FBBD1EB602BC009856AA = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					5257FC231EB63481009856AA = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -118,7 +186,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5257FBBD1EB602BC009856AA /* HandyLogs */,
+				5257FC231EB63481009856AA /* HandyLogs */,
+				5257FBBD1EB602BC009856AA /* HandyLogsDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -128,7 +197,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5257FBE51EB6135F009856AA /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5257FC221EB63481009856AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5257FC381EB63930009856AA /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,11 +217,26 @@
 			files = (
 				5257FBE81EB6135F009856AA /* ViewController.swift in Sources */,
 				5257FBE31EB6135F009856AA /* AppDelegate.swift in Sources */,
-				5257FBD51EB60380009856AA /* HandyLogs.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5257FC1F1EB63481009856AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5257FC361EB63618009856AA /* HandyLogs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5257FC3A1EB6394B009856AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5257FC231EB63481009856AA /* HandyLogs */;
+			targetProxy = 5257FC391EB6394B009856AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */ = {
@@ -200,12 +291,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -244,10 +336,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -255,8 +348,8 @@
 		5257FBD11EB602BC009856AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info-Demo.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.HandyLogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -268,12 +361,58 @@
 		5257FBD21EB602BC009856AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info-Demo.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.HandyLogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5257FC2E1EB63481009856AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.HandyLogs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5257FC2F1EB63481009856AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.HandyLogs;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -289,11 +428,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5257FBD01EB602BC009856AA /* Build configuration list for PBXNativeTarget "HandyLogs" */ = {
+		5257FBD01EB602BC009856AA /* Build configuration list for PBXNativeTarget "HandyLogsDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5257FBD11EB602BC009856AA /* Debug */,
 				5257FBD21EB602BC009856AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5257FC2D1EB63481009856AA /* Build configuration list for PBXNativeTarget "HandyLogs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5257FC2E1EB63481009856AA /* Debug */,
+				5257FC2F1EB63481009856AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
