@@ -23,14 +23,21 @@ public struct Handy {
             }
         }
         
+        public static var infoImage: String = "✳️"
+        public static var checkImage: String = "☑️"
+        public static var debugImage: String = "🔥"
+        public static var warningImage: String = "⚠️"
+        public static var errorImage: String = "❌"
+        public static var fatalImage: String = "🆘"
+        
         fileprivate var image: String {
             switch self {
-            case .info:     return "✳️"
-            case .check:    return "☑️"
-            case .debug:    return "🔥"
-            case .warning:  return "⚠️"
-            case .error:    return "❌"
-            case .fatal:    return "🆘"
+            case .info:     return LogType.infoImage
+            case .check:    return LogType.checkImage
+            case .debug:    return LogType.debugImage
+            case .warning:  return LogType.warningImage
+            case .error:    return LogType.errorImage
+            case .fatal:    return LogType.fatalImage
             }
         }
     }
