@@ -3,14 +3,14 @@
 build/
 DerivedData/
 
-**/xcuserdata
 *.pbxuser
 *.mode1v3
 
 *.xcodeproj/*
+*.xcodeproj/xcuserdata
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
+*.xcworkspace/contents.xcworkspacedata
 
 Podfile.lock
 Pods
