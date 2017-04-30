@@ -64,7 +64,6 @@ public struct Handy {
         #endif
     }
     
-    #if !SUBDIVIDE
     public static var defaultLogType: LogType = .info
     
     public static func log(
@@ -76,18 +75,8 @@ public struct Handy {
     {
         printLog(logType, filename, line, funcname, objects)
     }
-    #endif
     
     #if SUBDIVIDE
-    public static func log(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.info, filename, line, funcname, objects)
-    }
-    
     public static func cLog(
         _ objects: Any...,
         _ filename: String = #file,
