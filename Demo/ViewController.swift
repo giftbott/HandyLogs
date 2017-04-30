@@ -23,15 +23,14 @@ class ViewController: UIViewController {
         Handy.LogType.debugEmoji = "🔰"
         Handy.LogType.infoEmoji = "🔥"
         Handy.log("DefaultLogType & emoji are changable")
-                
-        Handy.log("If you set custom flag: SUBDIVIDE", logType: .fatal)
         
-        #if SUBDIVIDE
-            Handy.cLog("Subdivided functions will be provided")
-            Handy.dLog("to more convenience use for each log type")
-            Handy.wLog()
-            Handy.eLog()
-            Handy.fLog()
-        #endif
+        Handy.log("If you set enableLogging as false", logType: .fatal)
+        Handy.enableLogging = false
+        
+        Handy.cLog("All logs are never printed")
+        Handy.dLog()
+        Handy.wLog("And use these c,d,w,e,f Logs to change logType easily")
+        Handy.eLog()
+        Handy.fLog()
     }
 }
