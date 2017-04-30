@@ -49,6 +49,7 @@ public struct Handy {
         _ funcname: String = #function,
         _ objects: Array<Any>)
     {
+        #if DEBUG
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss:SSS"
         let timestamp = dateFormatter.string(from: Date())
@@ -60,6 +61,7 @@ public struct Handy {
         print("⚙️\(funcname) (\(line)) \(logType.image)", terminator: " ")
         let _ = objects.map { print($0, terminator: " ") }
         print()
+        #endif
     }
     
     #if !SUBDIVIDE
