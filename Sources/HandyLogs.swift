@@ -23,6 +23,10 @@
 import Foundation
 
 public struct Handy {
+    
+    /// When enableLogging is false, Log don't be printed
+    public static var enableLogging: Bool = true
+    
     public enum LogType {
         case info, check, debug, warning, error, fatal
         
@@ -56,30 +60,12 @@ public struct Handy {
         }
     }
     
-    private static func printLog(
-        _ logType: LogType,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function,
-        _ objects: Array<Any>)
-    {
-        #if DEBUG
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss:SSS"
-        let timestamp = dateFormatter.string(from: Date())
-        let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
-        let queue = Thread.isMainThread ? "UI" : "BG"
-        
-        print("\(logType.image)\(logType.name)", terminator: " ")
-        print("⏱\(timestamp) \(file) (\(queue))", terminator: " ")
-        print("⚙️\(funcname) (\(line)) \(logType.image)", terminator: " ")
-        let _ = objects.map { print($0, terminator: " ") }
-        print()
-        #endif
-    }
     
+    /// defaultLogType for log function
     public static var defaultLogType: LogType = .info
     
+    
+    /// Basic log function
     public static func log(
         _ objects: Any...,
         logType: LogType = defaultLogType,
@@ -90,7 +76,8 @@ public struct Handy {
         printLog(logType, filename, line, funcname, objects)
     }
     
-    #if SUBDIVIDE
+    
+    // #if SUBDIVIDE
     public static func cLog(
         _ objects: Any...,
         _ filename: String = #file,
@@ -135,5 +122,33 @@ public struct Handy {
     {
         printLog(.fatal, filename, line, funcname, objects)
     }
-    #endif
+    // #endif
+    
+    
+    //TODO: choice log string: timestamp, funcname, queue
+    //TODO: changeable timestamp formatt, timestamp emoji, funcname emoji
+    
+    /// Real printLog function
+    private static func printLog(
+        _ logType: LogType,
+        _ filename: String = #file,
+        _ line: Int = #line,
+        _ funcname: String = #function,
+        _ objects: Array<Any>)
+    {
+        if enableLogging {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss:SSS"
+            let timestamp = dateFormatter.string(from: Date())
+            let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
+            let queue = Thread.isMainThread ? "UI" : "BG"
+            
+            print("\(logType.image)\(logType.name)", terminator: " ")
+            print("⏱\(timestamp) \(file) (\(queue))", terminator: " ")
+            print("⚙️\(funcname) (\(line)) \(logType.image)", terminator: " ")
+            let _ = objects.map { print($0, terminator: " ") }
+            print()
+        }
+    }
+    
 }
