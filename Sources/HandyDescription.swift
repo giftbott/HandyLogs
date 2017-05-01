@@ -25,22 +25,38 @@ import Foundation
 //TODO: Add different description type
 
 public protocol HandyDescription: CustomStringConvertible, CustomDebugStringConvertible {
+    /// For class where already conforming CustomStringConvertible protocol
+    ///
+    ///     let view = UIView()
+    ///     print(view.desc)
+    var desc: String { get }
+    
+    
+    /// For CustomStringConvertible implementation
+    ///
+    ///     let customClass = CustomClass()
+    ///     print(customClass)
     var description: String { get }
+    
+    /// For CustomDebugStringConvertible implementation
     var debugDescription: String { get }
 }
 
-
 extension HandyDescription {
+    public var desc: String {
+        return handyDescription()
+    }
+    
     public var description: String {
-        return mixDescription()
+        return handyDescription()
     }
     
     public var debugDescription: String {
-        return mixDescription()
+        return handyDescription()
     }
     
     /// print all properties of self & super class
-    private func mixDescription() -> String {
+    private func handyDescription() -> String {
         var description = "\n✨ \(type(of: self)) "
         description += "<\(Unmanaged.passUnretained(self as AnyObject).toOpaque())> ✨\n"
         
