@@ -10,6 +10,9 @@ import UIKit
 import HandyLogs
 
 class ViewController: UIViewController {
+    
+    let name   = "HandyLogs"
+    let author = "giftbot"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,9 @@ class ViewController: UIViewController {
         Handy.dLog()
         Handy.wLog("And use these c,d,w,e,f Logs to change logType easily")
         Handy.eLog()
-        Handy.fLog()
+        
+        Handy.enableLogging = true
+        Handy.fLog("Using description function, it will prints all properties of class you want")
+        Handy.description(self)
     }
 }

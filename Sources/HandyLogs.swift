@@ -1,6 +1,6 @@
 // MIT License
 //
-// Copyright (c) 2017 Giftbot (giftbott@gmail.com)
+// Copyright (c) 2017 giftbott (giftbott@gmail.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,9 @@ public struct Handy {
             }
         }
         
+        /// Alterable emojis
+        ///
+        ///     Handy.LogType.infoEmoji = "✳️"
         public static var infoEmoji: String = "✳️"
         public static var checkEmoji: String = "☑️"
         public static var debugEmoji: String = "🔥"
@@ -66,6 +69,14 @@ public struct Handy {
     
     
     /// Basic log function
+    ///
+    ///     Handy.log(somethingForLogging)
+    ///
+    /// or input logType you want
+    ///
+    ///     Handy.log(somethingForLogging, .error)
+    ///
+    /// defaultLogType is .info, if logtype is omitted
     public static func log(
         _ objects: Any...,
         logType: LogType = defaultLogType,
@@ -77,59 +88,11 @@ public struct Handy {
     }
     
     
-    // #if SUBDIVIDE
-    public static func cLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.check, filename, line, funcname, objects)
-    }
-    
-    public static func dLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.debug, filename, line, funcname, objects)
-    }
-    
-    public static func wLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.warning, filename, line, funcname, objects)
-    }
-    
-    public static func eLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.error, filename, line, funcname, objects)
-    }
-    
-    public static func fLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.fatal, filename, line, funcname, objects)
-    }
-    // #endif
-    
-    
     //TODO: choice log string: timestamp, funcname, queue
     //TODO: changeable timestamp formatt, timestamp emoji, funcname emoji
     
     /// Real printLog function
-    private static func printLog(
+    fileprivate static func printLog(
         _ logType: LogType,
         _ filename: String = #file,
         _ line: Int = #line,
@@ -151,4 +114,92 @@ public struct Handy {
         }
     }
     
+}
+
+
+//MARK: Subdevided Functions
+extension Handy {
+    
+    /// Handy.cLog(somethingForLogging)
+    public static func cLog(
+        _ objects: Any...,
+        _ filename: String = #file,
+        _ line: Int = #line,
+        _ funcname: String = #function)
+    {
+        printLog(.check, filename, line, funcname, objects)
+    }
+    
+    /// Handy.dLog(somethingForLogging)
+    public static func dLog(
+        _ objects: Any...,
+        _ filename: String = #file,
+        _ line: Int = #line,
+        _ funcname: String = #function)
+    {
+        printLog(.debug, filename, line, funcname, objects)
+    }
+    
+    /// Handy.wLog(somethingForLogging)
+    public static func wLog(
+        _ objects: Any...,
+        _ filename: String = #file,
+        _ line: Int = #line,
+        _ funcname: String = #function)
+    {
+        printLog(.warning, filename, line, funcname, objects)
+    }
+    
+    /// Handy.eLog(somethingForLogging)
+    public static func eLog(
+        _ objects: Any...,
+        _ filename: String = #file,
+        _ line: Int = #line,
+        _ funcname: String = #function)
+    {
+        printLog(.error, filename, line, funcname, objects)
+    }
+    
+    /// Handy.fLog(somethingForLogging)
+    public static func fLog(
+        _ objects: Any...,
+        _ filename: String = #file,
+        _ line: Int = #line,
+        _ funcname: String = #function)
+    {
+        printLog(.fatal, filename, line, funcname, objects)
+    }
+}
+
+
+//MARK: Description Function
+extension Handy {
+    
+    /// Print all properties of class
+    ///
+    ///     Handy.description(someViewController)
+    ///     Handy.description(someModel)
+    public static func description(_ object: Any) {
+        if enableLogging {
+            var description = "\n✨ \(type(of: object)) "
+            description += "<\(Unmanaged.passUnretained(object as AnyObject).toOpaque())> ✨\n"
+            
+            let selfMirror = Mirror(reflecting: object)
+            for child in selfMirror.children {
+                if let propertyName = child.label {
+                    description += "👉 \(propertyName): \(child.value)\n"
+                }
+            }
+            
+            if let superMirror = selfMirror.superclassMirror {
+                for child in superMirror.children {
+                    if let propertyName = child.label {
+                        description += "👉 \(propertyName): \(child.value)\n"
+                    }
+                }
+            }
+            
+            print(description)
+        }
+    }
 }

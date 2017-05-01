@@ -1,6 +1,6 @@
 // MIT License
 //
-// Copyright (c) 2017 Giftbot (giftbott@gmail.com)
+// Copyright (c) 2017 giftbott (giftbott@gmail.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ import Foundation
 //TODO: Add different description type
 
 public protocol HandyDescription: CustomStringConvertible, CustomDebugStringConvertible {
-    /// For class where already conforming CustomStringConvertible protocol
+    /// For classes where already conforming CustomStringConvertible protocol
     ///
     ///     let view = UIView()
     ///     print(view.desc)
@@ -41,6 +41,7 @@ public protocol HandyDescription: CustomStringConvertible, CustomDebugStringConv
     /// For CustomDebugStringConvertible implementation
     var debugDescription: String { get }
 }
+
 
 extension HandyDescription {
     public var desc: String {
