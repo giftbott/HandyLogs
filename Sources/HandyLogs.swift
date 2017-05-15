@@ -22,184 +22,215 @@
 
 import Foundation
 
+
+//TODO: changeable timestamp formatt, timestamp emoji, funcname emoji
+//TODO: choiceable short / full version logging each logtype
+
 public struct Handy {
+  
+  /// When enableLogging is false, Log don't be printed
+  public static var enableLogging: Bool = true
+  
+  public enum LogType {
+    case info, check, debug, warning, error, fatal
     
-    /// When enableLogging is false, Log don't be printed
-    public static var enableLogging: Bool = true
-    
-    public enum LogType {
-        case info, check, debug, warning, error, fatal
-        
-        fileprivate var name: String {
-            switch self {
-            case .info:     return "Info "
-            case .check:    return "Check"
-            case .debug:    return "Debug"
-            case .warning:  return "Warn "
-            case .error:    return "Error"
-            case .fatal:    return "Fatal"
-            }
-        }
-        
-        /// Alterable emojis
-        ///
-        ///     Handy.LogType.infoEmoji = "✳️"
-        public static var infoEmoji: String = "✳️"
-        public static var checkEmoji: String = "☑️"
-        public static var debugEmoji: String = "🔥"
-        public static var warningEmoji: String = "⚠️"
-        public static var errorEmoji: String = "❌"
-        public static var fatalEmoji: String = "🆘"
-        
-        fileprivate var image: String {
-            switch self {
-            case .info:     return LogType.infoEmoji
-            case .check:    return LogType.checkEmoji
-            case .debug:    return LogType.debugEmoji
-            case .warning:  return LogType.warningEmoji
-            case .error:    return LogType.errorEmoji
-            case .fatal:    return LogType.fatalEmoji
-            }
-        }
+    fileprivate var name: String {
+      switch self {
+      case .info:     return "Info "
+      case .check:    return "Check"
+      case .debug:    return "Debug"
+      case .warning:  return "Warn "
+      case .error:    return "Error"
+      case .fatal:    return "Fatal"
+      }
     }
     
+    /// Alterable emojis
+    ///
+    ///     Handy.LogType.infoEmoji = "✳️"
+    public static var infoEmoji: String = "✳️"
+    public static var checkEmoji: String = "☑️"
+    public static var debugEmoji: String = "🔥"
+    public static var warningEmoji: String = "⚠️"
+    public static var errorEmoji: String = "❌"
+    public static var fatalEmoji: String = "🆘"
     
-    /// defaultLogType for log function
-    public static var defaultLogType: LogType = .info
-    
-    
-    /// Basic log function
-    ///
-    ///     Handy.log(somethingForLogging)
-    ///
-    /// or input logType you want
-    ///
-    ///     Handy.log(somethingForLogging, .error)
-    ///
-    /// defaultLogType is .info, if logtype is omitted
-    public static func log(
-        _ objects: Any...,
-        logType: LogType = defaultLogType,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(logType, filename, line, funcname, objects)
+    fileprivate var image: String {
+      switch self {
+      case .info:     return LogType.infoEmoji
+      case .check:    return LogType.checkEmoji
+      case .debug:    return LogType.debugEmoji
+      case .warning:  return LogType.warningEmoji
+      case .error:    return LogType.errorEmoji
+      case .fatal:    return LogType.fatalEmoji
+      }
     }
+  }
+  
+  
+  public struct PrintOption {
+    /// Alterable emojis
+    ///
+    ///     Handy.PrintOption.timestampEmoji = "⏱"
+    public static var timestampEmoji: String = "⏱"
+    public static var executedLineEmoji: String = "⚙️"
+    public static var mainThreadEmoji: String?
+    public static var backgroundThreadEmoji: String?
     
+    /// Division Line Emoji
+    public static var divisionLineEmoji: String = "="
     
-    //TODO: choice log string: timestamp, funcname, queue
-    //TODO: changeable timestamp formatt, timestamp emoji, funcname emoji
-    
-    /// Real printLog function
-    fileprivate static func printLog(
-        _ logType: LogType,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function,
-        _ objects: Array<Any>)
-    {
-        if enableLogging {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm:ss:SSS"
-            let timestamp = dateFormatter.string(from: Date())
-            let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
-            let queue = Thread.isMainThread ? "UI" : "BG"
-            
-            print("\(logType.image)\(logType.name)", terminator: " ")
-            print("⏱\(timestamp) \(file) (\(queue))", terminator: " ")
-            print("⚙️\(funcname) (\(line)) \(logType.image)", terminator: " ")
-            let _ = objects.map { print($0, terminator: " ") }
-            print()
-        }
+    /// if true, print log contents under base log message
+    public static var isPrintAtNewLine: Bool = false
+  }
+  
+  
+  /// defaultLogType for log function
+  public static var defaultLogType: LogType = .info
+  
+  
+  /// Basic log function
+  ///
+  ///     Handy.log(somethingForLogging)
+  ///
+  /// or input logType you want
+  ///
+  ///     Handy.log(somethingForLogging, .error)
+  ///
+  /// defaultLogType is .info, if logtype is omitted
+  public static func log(
+    _ objects: Any...,
+    logType: LogType = defaultLogType,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(logType, filename, line, funcname, objects)
+  }
+  
+  
+  
+  /// Real printLog function
+  fileprivate static func printLog(
+    _ logType: LogType,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function,
+    _ objects: Array<Any>)
+  {
+    if enableLogging {
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "HH:mm:ss:SSS"
+      let timestamp = dateFormatter.string(from: Date())
+      let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
+      let queue = Thread.isMainThread ?
+        PrintOption.mainThreadEmoji ?? "(UI)" : PrintOption.backgroundThreadEmoji ?? "(BG)"
+      
+      print("\(logType.image)\(logType.name)", terminator: " ")
+      print("\(PrintOption.timestampEmoji)\(timestamp)", terminator: " ")
+      print("\(file) \(queue)", terminator: " ")
+      print("\(PrintOption.executedLineEmoji)\(funcname) (\(line))", terminator: " ")
+      print("\(logType.image)", terminator: PrintOption.isPrintAtNewLine ? "\n" : " ")
+      let _ = objects.map { print($0, terminator: " ") }
+      print()
     }
-    
+  }
 }
 
 
 //MARK: Subdevided Functions
 extension Handy {
-    
-    /// Handy.cLog(somethingForLogging)
-    public static func cLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.check, filename, line, funcname, objects)
-    }
-    
-    /// Handy.dLog(somethingForLogging)
-    public static func dLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.debug, filename, line, funcname, objects)
-    }
-    
-    /// Handy.wLog(somethingForLogging)
-    public static func wLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.warning, filename, line, funcname, objects)
-    }
-    
-    /// Handy.eLog(somethingForLogging)
-    public static func eLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.error, filename, line, funcname, objects)
-    }
-    
-    /// Handy.fLog(somethingForLogging)
-    public static func fLog(
-        _ objects: Any...,
-        _ filename: String = #file,
-        _ line: Int = #line,
-        _ funcname: String = #function)
-    {
-        printLog(.fatal, filename, line, funcname, objects)
-    }
+  
+  /// Handy.cLog(somethingForLogging)
+  public static func cLog(
+    _ objects: Any...,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(.check, filename, line, funcname, objects)
+  }
+  
+  /// Handy.dLog(somethingForLogging)
+  public static func dLog(
+    _ objects: Any...,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(.debug, filename, line, funcname, objects)
+  }
+  
+  /// Handy.wLog(somethingForLogging)
+  public static func wLog(
+    _ objects: Any...,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(.warning, filename, line, funcname, objects)
+  }
+  
+  /// Handy.eLog(somethingForLogging)
+  public static func eLog(
+    _ objects: Any...,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(.error, filename, line, funcname, objects)
+  }
+  
+  /// Handy.fLog(somethingForLogging)
+  public static func fLog(
+    _ objects: Any...,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(.fatal, filename, line, funcname, objects)
+  }
+}
+
+
+//MARK: Division Line
+extension Handy {
+  public static func addDivisionLine(count: Int = 90) {
+    print()
+    print(String(repeating: PrintOption.divisionLineEmoji, count: count))
+    print()
+  }
 }
 
 
 //MARK: Description Function
 extension Handy {
-    
-    /// Print all properties of class
-    ///
-    ///     Handy.description(someViewController)
-    ///     Handy.description(someModel)
-    public static func description(_ object: Any) {
-        if enableLogging {
-            var description = "\n✨ \(type(of: object)) "
-            description += "<\(Unmanaged.passUnretained(object as AnyObject).toOpaque())> ✨\n"
-            
-            let selfMirror = Mirror(reflecting: object)
-            for child in selfMirror.children {
-                if let propertyName = child.label {
-                    description += "👉 \(propertyName): \(child.value)\n"
-                }
-            }
-            
-            if let superMirror = selfMirror.superclassMirror {
-                for child in superMirror.children {
-                    if let propertyName = child.label {
-                        description += "👉 \(propertyName): \(child.value)\n"
-                    }
-                }
-            }
-            
-            print(description)
+  
+  /// Print all properties of class
+  ///
+  ///     Handy.description(someViewController)
+  ///     Handy.description(someModel)
+  public static func description(_ object: Any) {
+    if enableLogging {
+      var description = "\n✨ \(type(of: object)) "
+      description += "<\(Unmanaged.passUnretained(object as AnyObject).toOpaque())> ✨\n"
+      
+      let selfMirror = Mirror(reflecting: object)
+      for child in selfMirror.children {
+        if let propertyName = child.label {
+          description += "👉 \(propertyName): \(child.value)\n"
         }
+      }
+      
+      if let superMirror = selfMirror.superclassMirror {
+        for child in superMirror.children {
+          if let propertyName = child.label {
+            description += "👉 \(propertyName): \(child.value)\n"
+          }
+        }
+      }
+      
+      print(description)
     }
+  }
 }
