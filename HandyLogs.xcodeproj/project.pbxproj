@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		5257FBE31EB6135F009856AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBDB1EB6135F009856AA /* AppDelegate.swift */; };
 		5257FBE81EB6135F009856AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBE21EB6135F009856AA /* ViewController.swift */; };
-		5257FC331EB6357C009856AA /* HandyLogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 5257FC321EB6357C009856AA /* HandyLogs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5257FC331EB6357C009856AA /* HandyLogs.h in Headers */ = {isa = PBXBuildFile; fileRef = 5257FC321EB6357C009856AA /* HandyLogs.h */; };
 		5257FC361EB63618009856AA /* HandyLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBD41EB60380009856AA /* HandyLogs.swift */; };
 		5257FC371EB6368C009856AA /* HandyLogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5257FC241EB63481009856AA /* HandyLogs.framework */; };
 		5257FC3E1EB63C2A009856AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */; };
-		5257FC461EB6F36F009856AA /* HandyDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FC451EB6F36F009856AA /* HandyDescription.swift */; };
+		529800101ECAA1170033A8A0 /* HandyLogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5298000F1ECAA1170033A8A0 /* HandyLogOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 		5257FC241EB63481009856AA /* HandyLogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HandyLogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257FC321EB6357C009856AA /* HandyLogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HandyLogs.h; path = Sources/HandyLogs.h; sourceTree = "<group>"; };
 		5257FC341EB63593009856AA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Support/Info.plist; sourceTree = "<group>"; };
-		5257FC451EB6F36F009856AA /* HandyDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandyDescription.swift; path = Sources/HandyDescription.swift; sourceTree = "<group>"; };
+		5298000F1ECAA1170033A8A0 /* HandyLogOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandyLogOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 			children = (
 				5257FC321EB6357C009856AA /* HandyLogs.h */,
 				5257FBD41EB60380009856AA /* HandyLogs.swift */,
-				5257FC451EB6F36F009856AA /* HandyDescription.swift */,
+				5298000F1ECAA1170033A8A0 /* HandyLogOptions.swift */,
 				5257FBEA1EB626F5009856AA /* Supporting Files */,
 			);
 			name = HandyLogs;
@@ -227,8 +227,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				529800101ECAA1170033A8A0 /* HandyLogOptions.swift in Sources */,
 				5257FC361EB63618009856AA /* HandyLogs.swift in Sources */,
-				5257FC461EB6F36F009856AA /* HandyDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +352,7 @@
 		5257FBD11EB602BC009856AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info-Demo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -365,6 +366,7 @@
 		5257FBD21EB602BC009856AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info-Demo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
