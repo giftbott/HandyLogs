@@ -78,7 +78,7 @@ public struct HandyLogPrintOption {
   ///
   ///     HandyLogPrintOption.timestampEmoji = "⏱"
   public static var timestampEmoji = "⏱"
-  public static var executedLineEmoji = "⚙️"
+  public static var executedLineEmoji = "➡️"
   
   public static var mainThreadEmoji: String?
   public static var backgroundThreadEmoji: String?

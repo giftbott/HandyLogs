@@ -70,11 +70,13 @@ extension HandyLogProtocol {
         HandyLogPrintOption.mainThreadEmoji ?? "(UI)" :
         HandyLogPrintOption.backgroundThreadEmoji ?? "(BG)"
       
-      let logString = "\(logType.image)\(logType.name) "
-        + "\(queue)"
+      let logString = ""
+        + "\(logType.image)\(logType.name) "
         + "\(HandyLogPrintOption.timestampEmoji)\(timestamp) "
-        + "\(HandyLogPrintOption.executedLineEmoji)\(file).\(funcname) [\(line)]"
+        + "\(queue) "
+        + "\(HandyLogPrintOption.executedLineEmoji)\(file).\(funcname)(\(line)) "
         + "\(logType.image)"
+      
       
       print(logString, terminator: HandyLogPrintOption.isPrintAtNewLine ? "\n" : " ")
       let _ = objects.map { print($0, terminator: " ") }
@@ -125,6 +127,16 @@ extension HandyLogProtocol {
     _ funcname: String = #function)
   {
     printLog(.error, filename, line, funcname, objects)
+  }
+  
+  /// fLog(someObjects...)
+  public func fLog(
+    _ objects: Any...,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(.fatal, filename, line, funcname, objects)
   }
 }
 
