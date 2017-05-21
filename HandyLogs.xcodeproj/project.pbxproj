@@ -13,7 +13,6 @@
 		5257FC361EB63618009856AA /* HandyLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257FBD41EB60380009856AA /* HandyLogs.swift */; };
 		5257FC371EB6368C009856AA /* HandyLogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5257FC241EB63481009856AA /* HandyLogs.framework */; };
 		5257FC3E1EB63C2A009856AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5257FBDD1EB6135F009856AA /* LaunchScreen.storyboard */; };
-		529800141ECAA5120033A8A0 /* HandyLogOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529800131ECAA5120033A8A0 /* HandyLogOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +35,6 @@
 		5257FC241EB63481009856AA /* HandyLogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HandyLogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257FC321EB6357C009856AA /* HandyLogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HandyLogs.h; path = Sources/HandyLogs.h; sourceTree = "<group>"; };
 		5257FC341EB63593009856AA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Support/Info.plist; sourceTree = "<group>"; };
-		529800131ECAA5120033A8A0 /* HandyLogOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HandyLogOptions.swift; path = Sources/HandyLogOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +90,6 @@
 			children = (
 				5257FC321EB6357C009856AA /* HandyLogs.h */,
 				5257FBD41EB60380009856AA /* HandyLogs.swift */,
-				529800131ECAA5120033A8A0 /* HandyLogOptions.swift */,
 				5257FBEA1EB626F5009856AA /* Supporting Files */,
 			);
 			name = HandyLogs;
@@ -227,7 +224,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				529800141ECAA5120033A8A0 /* HandyLogOptions.swift in Sources */,
 				5257FC361EB63618009856AA /* HandyLogs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

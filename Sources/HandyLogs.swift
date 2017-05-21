@@ -26,38 +26,102 @@ import Foundation
 //TODO: changeable timestamp formatt, timestamp emoji, funcname emoji
 //TODO: choiceable short / full version logging each logtype
 
-public protocol HandyLogProtocol {}
-extension NSObject: HandyLogProtocol { }
-
-extension HandyLogProtocol {
+public struct Handy {
+  private init() {}
+  
+  public enum Level {
+    case info, check, debug, warning, error, fatal
+    
+    /// defaultLevel for log function
+    public static var defaultLevel: Level = .info
+    
+    fileprivate var name: String {
+      switch self {
+      case .info:     return "Info "
+      case .check:    return "Check"
+      case .debug:    return "Debug"
+      case .warning:  return "Warn "
+      case .error:    return "Error"
+      case .fatal:    return "Fatal"
+      }
+    }
+    
+    /// Alterable emojis
+    ///
+    ///     Handy.Level.infoEmoji = "✳️"
+    public static var infoEmoji: String = "✳️"
+    public static var checkEmoji: String = "☑️"
+    public static var debugEmoji: String = "🔥"
+    public static var warningEmoji: String = "⚠️"
+    public static var errorEmoji: String = "❌"
+    public static var fatalEmoji: String = "🆘"
+    
+    fileprivate var image: String {
+      switch self {
+      case .info:     return Level.infoEmoji
+      case .check:    return Level.checkEmoji
+      case .debug:    return Level.debugEmoji
+      case .warning:  return Level.warningEmoji
+      case .error:    return Level.errorEmoji
+      case .fatal:    return Level.fatalEmoji
+      }
+    }
+  }
+  
+  public struct PrintOption {
+    private init() {}
+    
+    /// When enableLogging is false, Log don't be printed
+    public static var enableLogging: Bool = true
+    
+    
+    /// Alterable emojis
+    ///
+    ///     Handy.PrintOption.timestampEmoji = "⏱"
+    public static var timestampEmoji: String = "⏱"
+    public static var executedLineEmoji: String = "➡️"
+    public static var mainThreadEmoji: String?
+    public static var backgroundThreadEmoji: String?
+    
+    /// Division Line Emoji
+    public static var divisionLineEmoji: String = "="
+    public static var repeatDivisionLineCharacter = 80
+    
+    /// if true, print log contents under base log message
+    public static var isPrintAtNewLine: Bool = false
+  }
+  
+  
   /// Basic log function
   ///
-  ///     handyLog(somethingForLogging)
+  ///     Handy.log(somethingForLogging)
   ///
-  /// or input logType you want
+  /// or input Level you want
   ///
-  ///     handyLog(somethingForLogging, type: .error)
+  ///     Handy.log(somethingForLogging, .error)
   ///
-  /// defaultLogType is .info, if type parameter is omitted
-  public func handyLog(
+  /// defaultLevel is .info, if Level is omitted
+  public static func log(
     _ objects: Any...,
-    type: HandyLogTypeOption.LogType = HandyLogTypeOption.default,
+    Level: Level = Level.defaultLevel,
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(type, filename, line, funcname, objects)
+    printLog(Level, filename, line, funcname, objects)
   }
   
   
-  fileprivate func printLog(
-    _ logType: HandyLogTypeOption.LogType,
+  
+  /// Real printLog function
+  fileprivate static func printLog(
+    _ Level: Level,
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function,
     _ objects: Array<Any>)
   {
-    guard HandyLogPrintOption.enableLogging else {
+    guard PrintOption.enableLogging else {
       return
     }
     
@@ -67,30 +131,40 @@ extension HandyLogProtocol {
       let timestamp = dateFormatter.string(from: Date())
       let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
       let queue = Thread.isMainThread ?
-        HandyLogPrintOption.mainThreadEmoji ?? "(UI)" :
-        HandyLogPrintOption.backgroundThreadEmoji ?? "(BG)"
+        PrintOption.mainThreadEmoji ?? "(UI)" :
+        PrintOption.backgroundThreadEmoji ?? "(BG)"
       
       let logString = ""
-        + "\(logType.image)\(logType.name) "
-        + "\(HandyLogPrintOption.timestampEmoji)\(timestamp) "
+        + "\(Level.image)\(Level.name) "
+        + "\(PrintOption.timestampEmoji)\(timestamp) "
         + "\(queue) "
-        + "\(HandyLogPrintOption.executedLineEmoji)\(file).\(funcname)(\(line)) "
-        + "\(logType.image)"
+        + "\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line)) "
+        + "\(Level.image)"
       
+      let delimeter = PrintOption.isPrintAtNewLine ? "\n" : " "
+      let message = objects.map { String(describing: $0) }.joined(separator: " ")
       
-      print(logString, terminator: HandyLogPrintOption.isPrintAtNewLine ? "\n" : " ")
-      let _ = objects.map { print($0, terminator: " ") }
-      print()
+      print(logString + delimeter + message)
     }
   }
 }
 
 
-//MARK: - Subdevided log
-extension HandyLogProtocol {
+//MARK: - Subdevided Functions
+extension Handy {
   
-  /// cLog(someObjects...)
-  public func cLog(
+  /// Handy.info(somethingForLogging)
+  public static func info(
+    _ objects: Any...,
+    _ filename: String = #file,
+    _ line: Int = #line,
+    _ funcname: String = #function)
+  {
+    printLog(.info, filename, line, funcname, objects)
+  }
+  
+  /// Handy.check(somethingForLogging)
+  public static func check(
     _ objects: Any...,
     _ filename: String = #file,
     _ line: Int = #line,
@@ -99,8 +173,8 @@ extension HandyLogProtocol {
     printLog(.check, filename, line, funcname, objects)
   }
   
-  /// dLog(someObjects...)
-  public func dLog(
+  /// Handy.debug(somethingForLogging)
+  public static func debug(
     _ objects: Any...,
     _ filename: String = #file,
     _ line: Int = #line,
@@ -109,8 +183,8 @@ extension HandyLogProtocol {
     printLog(.debug, filename, line, funcname, objects)
   }
   
-  /// wLog(someObjects...)
-  public func wLog(
+  /// Handy.warning(somethingForLogging)
+  public static func warning(
     _ objects: Any...,
     _ filename: String = #file,
     _ line: Int = #line,
@@ -119,8 +193,8 @@ extension HandyLogProtocol {
     printLog(.warning, filename, line, funcname, objects)
   }
   
-  /// eLog(someObjects...)
-  public func eLog(
+  /// Handy.error(somethingForLogging)
+  public static func error(
     _ objects: Any...,
     _ filename: String = #file,
     _ line: Int = #line,
@@ -129,8 +203,8 @@ extension HandyLogProtocol {
     printLog(.error, filename, line, funcname, objects)
   }
   
-  /// fLog(someObjects...)
-  public func fLog(
+  /// Handy.fatal(somethingForLogging)
+  public static func fatal(
     _ objects: Any...,
     _ filename: String = #file,
     _ line: Int = #line,
@@ -141,26 +215,29 @@ extension HandyLogProtocol {
 }
 
 
-
-//MARK: The other handy log functions
-extension HandyLogProtocol {
-  /// Print division line
-  func handyLogDivisionLine() {
-    guard HandyLogPrintOption.enableLogging else {
+//MARK: - Division Line
+extension Handy {
+  public static func addDivisionLine() {
+    guard PrintOption.enableLogging else {
       return
     }
     
-    let divisionLineString = String(repeating: HandyLogPrintOption.divisionLineEmoji,
-                                    count: HandyLogPrintOption.repeatDivisionLineCharacter)
+    let divisionLineString = String(repeating: PrintOption.divisionLineEmoji,
+                                    count: PrintOption.repeatDivisionLineCharacter)
     print("\n" + divisionLineString + "\n")
   }
+}
+
+
+//MARK: - Description
+extension Handy {
   
-  /// Print all properties of object
+  /// Print all properties of class
   ///
-  ///     handyDescription(someClassInstance)
-  ///     handyDescription(someStruct)
-  public func handyDescription(_ object: Any) {
-    guard HandyLogPrintOption.enableLogging else {
+  ///     Handy.description(someClassInstance)
+  ///     Handy.description(someStruct)
+  public static func description(_ object: Any) {
+    guard PrintOption.enableLogging else {
       return
     }
     
