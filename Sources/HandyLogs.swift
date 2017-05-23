@@ -101,7 +101,7 @@ public struct Handy {
   ///     Handy.log(somethingForLogging, .error)
   ///
   /// defaultLevel is .info, if Level is omitted
-  public static func log(
+  public static func m(
     _ objects: Any...,
     Level: Level = Level.defaultLevel,
     _ filename: String = #file,
