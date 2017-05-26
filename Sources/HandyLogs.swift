@@ -33,7 +33,7 @@ public struct Handy {
     case info, check, debug, warning, error, fatal
     
     /// defaultLevel for log function
-    public static var defaultLevel: Level = .info
+    public static var `default`: Level = .info
     
     fileprivate var name: String {
       switch self {
@@ -103,7 +103,7 @@ public struct Handy {
   /// defaultLevel is .info, if Level is omitted
   public static func m(
     _ objects: Any...,
-    Level: Level = Level.defaultLevel,
+    Level: Level = Level.default,
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
