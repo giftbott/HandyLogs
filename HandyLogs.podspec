@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "HandyLogs"
-  s.version      = "1.1"
+  s.version      = "1.2"
   s.summary      = "Handy Logging Library"
   s.homepage     = "https://github.com/giftbott/HandyLogs"
   s.license      = { :type => "MIT", :file => "LICENSE" }
