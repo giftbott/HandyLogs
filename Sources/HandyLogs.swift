@@ -22,9 +22,7 @@
 
 import Foundation
 
-
-//TODO: changeable timestamp formatt, timestamp emoji, funcname emoji
-//TODO: choiceable short / full version logging each logtype
+// TODO: changeable timestamp formatt
 
 public struct Handy {
   private init() {}
@@ -68,12 +66,19 @@ public struct Handy {
     }
   }
   
+  // MARK: PrintOption
+  
   public struct PrintOption {
     private init() {}
     
+    public enum Mode {
+      case `default`
+      case short
+    }
+    
     /// When enableLogging is false, Log don't be printed
     public static var enableLogging: Bool = true
-    
+    public static var printMode: Mode = .default
     
     /// Alterable emojis
     ///
@@ -87,8 +92,12 @@ public struct Handy {
     public static var divisionLineEmoji: String = "="
     public static var repeatDivisionLineCharacter = 80
     
-    /// if true, print log contents under base log message
+    /// if true, print log contents under base metadata message
     public static var isPrintAtNewLine: Bool = false
+    
+    /// Default thread message is (UI) for main thread & (BG) for background thread
+    // No available for now.
+    // public static var isPrintThread: Bool = true
   }
   
   
@@ -111,19 +120,16 @@ public struct Handy {
     printLog(Level, filename, line, funcname, objects)
   }
   
-  
-  
   /// Real printLog function
-  fileprivate static func printLog(
+  
+  private static func printLog(
     _ Level: Level,
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function,
-    _ objects: Array<Any>)
-  {
-    guard PrintOption.enableLogging else {
-      return
-    }
+    _ objects: Array<Any>
+    ) {
+    guard PrintOption.enableLogging else { return }
     
     DispatchQueue.global().sync {
       let dateFormatter = DateFormatter()
@@ -131,15 +137,20 @@ public struct Handy {
       let timestamp = dateFormatter.string(from: Date())
       let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
       let queue = Thread.isMainThread ?
-        PrintOption.mainThreadEmoji ?? "(UI)" :
-        PrintOption.backgroundThreadEmoji ?? "(BG)"
+        PrintOption.mainThreadEmoji ?? "(UI) " :
+        PrintOption.backgroundThreadEmoji ?? "(BG) "
       
-      let logString = ""
-        + "\(Level.image)\(Level.name) "
-        + "\(PrintOption.timestampEmoji)\(timestamp) "
-        + "\(queue) "
-        + "\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line)) "
-        + "\(Level.image)"
+      var logString = ""
+      switch Handy.PrintOption.printMode {
+      case .default:
+        logString = "\(Level.image)\(Level.name) "
+          + "\(PrintOption.timestampEmoji)\(timestamp) "
+          + "\(queue)"
+          + "\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))"
+          + "\(Level.image)"
+      case .short:
+        logString = "\(Level.image)\(timestamp) \(queue)\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))\(Level.image)"
+      }
       
       let delimeter = PrintOption.isPrintAtNewLine ? "\n" : " "
       let message = objects.map { String(describing: $0) }.joined(separator: " ")
@@ -147,11 +158,8 @@ public struct Handy {
       print(logString + delimeter + message)
     }
   }
-}
-
-
-//MARK: - Subdevided Functions
-extension Handy {
+  
+  // MARK: Subdevided Functions
   
   /// Handy.info(somethingForLogging)
   public static func info(
@@ -214,13 +222,11 @@ extension Handy {
   }
 }
 
+// MARK: - Division Line
 
-//MARK: - Division Line
 extension Handy {
   public static func addDivisionLine() {
-    guard PrintOption.enableLogging else {
-      return
-    }
+    guard PrintOption.enableLogging else { return }
     
     let divisionLineString = String(repeating: PrintOption.divisionLineEmoji,
                                     count: PrintOption.repeatDivisionLineCharacter)
@@ -229,7 +235,8 @@ extension Handy {
 }
 
 
-//MARK: - Description
+// MARK: - Description
+
 extension Handy {
   
   /// Print all properties of class
@@ -237,9 +244,7 @@ extension Handy {
   ///     Handy.description(someClassInstance)
   ///     Handy.description(someStruct)
   public static func description(_ object: Any) {
-    guard PrintOption.enableLogging else {
-      return
-    }
+    guard PrintOption.enableLogging else { return }
     
     var description = "\n✨ \(type(of: object)) "
     description += "<\(Unmanaged.passUnretained(object as AnyObject).toOpaque())> ✨\n"
