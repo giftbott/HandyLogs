@@ -22,7 +22,7 @@
 
 import Foundation
 
-// TODO: changeable timestamp formatt
+// TODO: changeable timestamp format
 
 public struct Handy {
   private init() {}
@@ -44,7 +44,7 @@ public struct Handy {
       }
     }
     
-    /// Alterable emojis
+    /// Changeable emojis
     ///
     ///     Handy.Level.infoEmoji = "✳️"
     public static var infoEmoji: String = "✳️"
@@ -73,14 +73,14 @@ public struct Handy {
     
     public enum Mode {
       case `default`
-      case short
+      case full
     }
     
     /// When enableLogging is false, Log don't be printed
     public static var enableLogging: Bool = true
     public static var printMode: Mode = .default
     
-    /// Alterable emojis
+    /// Changeable emojis
     ///
     ///     Handy.PrintOption.timestampEmoji = "⏱"
     public static var timestampEmoji: String = "⏱"
@@ -113,49 +113,53 @@ public struct Handy {
   public static func m(
     _ objects: Any...,
     Level: Level = Level.default,
+    _ header: String = "",
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(Level, filename, line, funcname, objects)
+    printLog(Level, filename, line, funcname, header, objects)
   }
   
-  /// Real printLog function
+  fileprivate static var printLogQueue = DispatchQueue(label: "kr.giftbot.HandyLogs.printLogQueue")
   
   private static func printLog(
     _ Level: Level,
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function,
+    _ header: String = "",
     _ objects: Array<Any>
     ) {
     guard PrintOption.enableLogging else { return }
     
-    DispatchQueue.global().sync {
+    printLogQueue.async {
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "HH:mm:ss:SSS"
       let timestamp = dateFormatter.string(from: Date())
-      let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
+      let fileUrl = URL(fileURLWithPath: filename, isDirectory: false)
+      let file = fileUrl.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
       let queue = Thread.isMainThread ?
         PrintOption.mainThreadEmoji ?? "(UI) " :
         PrintOption.backgroundThreadEmoji ?? "(BG) "
       
-      var logString = ""
+      let logInfo: String
       switch Handy.PrintOption.printMode {
       case .default:
-        logString = "\(Level.image)\(Level.name) "
+        logInfo = "\(Level.image)\(timestamp) \(queue)\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))\(Level.image)"
+      case .full:
+        logInfo = "\(Level.image)\(Level.name) "
           + "\(PrintOption.timestampEmoji)\(timestamp) "
           + "\(queue)"
           + "\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))"
           + "\(Level.image)"
-      case .short:
-        logString = "\(Level.image)\(timestamp) \(queue)\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))\(Level.image)"
       }
       
       let delimeter = PrintOption.isPrintAtNewLine ? "\n" : " "
+      let header = header.isEmpty ? "" : header + " : "
       let message = objects.map { String(describing: $0) }.joined(separator: " ")
       
-      print(logString + delimeter + message)
+      print(logInfo + delimeter + header + message)
     }
   }
   
@@ -164,61 +168,67 @@ public struct Handy {
   /// Handy.info(somethingForLogging)
   public static func info(
     _ objects: Any...,
+    header: String = "",
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(.info, filename, line, funcname, objects)
+    printLog(.info, filename, line, funcname, header, objects)
   }
   
   /// Handy.check(somethingForLogging)
   public static func check(
     _ objects: Any...,
+    header: String = "",
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(.check, filename, line, funcname, objects)
+    printLog(.check, filename, line, funcname, header, objects)
   }
   
   /// Handy.debug(somethingForLogging)
   public static func debug(
     _ objects: Any...,
+    header: String = "",
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(.debug, filename, line, funcname, objects)
+    printLog(.debug, filename, line, funcname, header, objects)
   }
   
   /// Handy.warning(somethingForLogging)
   public static func warning(
     _ objects: Any...,
+    header: String = "",
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(.warning, filename, line, funcname, objects)
+    printLog(.warning, filename, line, funcname, header, objects)
   }
   
   /// Handy.error(somethingForLogging)
   public static func error(
     _ objects: Any...,
+    header: String = "",
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(.error, filename, line, funcname, objects)
+    printLog(.error, filename, line, funcname, header, objects)
   }
   
   /// Handy.fatal(somethingForLogging)
   public static func fatal(
     _ objects: Any...,
+    header: String = "",
     _ filename: String = #file,
     _ line: Int = #line,
     _ funcname: String = #function)
   {
-    printLog(.fatal, filename, line, funcname, objects)
+    printLog(.fatal, filename, line, funcname, header, objects)
   }
 }
 
@@ -230,7 +240,9 @@ extension Handy {
     
     let divisionLineString = String(repeating: PrintOption.divisionLineEmoji,
                                     count: PrintOption.repeatDivisionLineCharacter)
-    print("\n" + divisionLineString + "\n")
+    printLogQueue.async {
+      print("\n" + divisionLineString + "\n")
+    }
   }
 }
 
@@ -264,6 +276,8 @@ extension Handy {
       }
     }
     
-    print(description)
+    printLogQueue.async {
+      print(description)
+    }
   }
 }
