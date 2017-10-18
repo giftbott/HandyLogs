@@ -121,8 +121,6 @@ public struct Handy {
     printLog(Level, filename, line, funcname, header, objects)
   }
   
-  fileprivate static var printLogQueue = DispatchQueue(label: "kr.giftbot.HandyLogs.printLogQueue")
-  
   private static func printLog(
     _ Level: Level,
     _ filename: String = #file,
@@ -133,34 +131,32 @@ public struct Handy {
     ) {
     guard PrintOption.enableLogging else { return }
     
-    printLogQueue.async {
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "HH:mm:ss:SSS"
-      let timestamp = dateFormatter.string(from: Date())
-      let fileUrl = URL(fileURLWithPath: filename, isDirectory: false)
-      let file = fileUrl.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
-      let queue = Thread.isMainThread ?
-        PrintOption.mainThreadEmoji ?? "(UI) " :
-        PrintOption.backgroundThreadEmoji ?? "(BG) "
-      
-      let logInfo: String
-      switch Handy.PrintOption.printMode {
-      case .default:
-        logInfo = "\(Level.image)\(timestamp) \(queue)\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))\(Level.image)"
-      case .full:
-        logInfo = "\(Level.image)\(Level.name) "
-          + "\(PrintOption.timestampEmoji)\(timestamp) "
-          + "\(queue)"
-          + "\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))"
-          + "\(Level.image)"
-      }
-      
-      let delimeter = PrintOption.isPrintAtNewLine ? "\n" : " "
-      let header = header.isEmpty ? "" : header + " : "
-      let message = objects.map { String(describing: $0) }.joined(separator: " ")
-      
-      print(logInfo + delimeter + header + message)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm:ss:SSS"
+    let timestamp = dateFormatter.string(from: Date())
+    let fileUrl = URL(fileURLWithPath: filename, isDirectory: false)
+    let file = fileUrl.lastPathComponent.components(separatedBy: ".").first ?? "Unknown"
+    let queue = Thread.isMainThread ?
+      PrintOption.mainThreadEmoji ?? "(UI) " :
+      PrintOption.backgroundThreadEmoji ?? "(BG) "
+    
+    let logInfo: String
+    switch Handy.PrintOption.printMode {
+    case .default:
+      logInfo = "\(Level.image)\(timestamp) \(queue)\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))\(Level.image)"
+    case .full:
+      logInfo = "\(Level.image)\(Level.name) "
+        + "\(PrintOption.timestampEmoji)\(timestamp) "
+        + "\(queue)"
+        + "\(PrintOption.executedLineEmoji)\(file).\(funcname) (\(line))"
+        + "\(Level.image)"
     }
+    
+    let delimeter = PrintOption.isPrintAtNewLine ? "\n" : " "
+    let header = header.isEmpty ? "" : header + " : "
+    let message = objects.map { String(describing: $0) }.joined(separator: " ")
+    
+    print(logInfo + delimeter + header + message)
   }
   
   // MARK: Subdevided Functions
@@ -240,9 +236,7 @@ extension Handy {
     
     let divisionLineString = String(repeating: PrintOption.divisionLineEmoji,
                                     count: PrintOption.repeatDivisionLineCharacter)
-    printLogQueue.async {
-      print("\n" + divisionLineString + "\n")
-    }
+    print("\n" + divisionLineString + "\n")
   }
 }
 
@@ -276,8 +270,6 @@ extension Handy {
       }
     }
     
-    printLogQueue.async {
-      print(description)
-    }
+    print(description)
   }
 }
